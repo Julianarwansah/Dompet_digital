@@ -1,6 +1,8 @@
 import 'dart:async';
 
 import 'package:app_links/app_links.dart';
+import 'package:flutter/foundation.dart';
+import 'package:flutter/services.dart';
 import 'package:go_router/go_router.dart';
 
 class DeeplinkPaymentData {
@@ -78,10 +80,14 @@ class DeeplinkService {
   DeeplinkService(this._router) : _appLinks = AppLinks();
 
   Future<void> init() async {
-    final initialUri = await _appLinks.getInitialLink();
-    if (initialUri != null) _handleUri(initialUri);
+    try {
+      final initialUri = await _appLinks.getInitialLink();
+      if (initialUri != null) _handleUri(initialUri);
 
-    _subscription = _appLinks.uriLinkStream.listen(_handleUri);
+      _subscription = _appLinks.uriLinkStream.listen(_handleUri);
+    } on MissingPluginException catch (e) {
+      debugPrint('[DeeplinkService] app_links plugin belum terdaftar: $e');
+    }
   }
 
   void _handleUri(Uri uri) {
