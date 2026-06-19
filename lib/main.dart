@@ -5,6 +5,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'core/router/app_router.dart';
 import 'core/theme/app_theme.dart';
 import 'core/utils/app_bloc_observer.dart';
+import 'firebase_options.dart';
 import 'injection/injection_container.dart' as di;
 
 void main() async {
@@ -12,8 +13,9 @@ void main() async {
 
   Bloc.observer = const AppBlocObserver();
 
-  // Initialize Firebase — pastikan google-services.json/GoogleService-Info.plist sudah ada
-  await Firebase.initializeApp();
+  await Firebase.initializeApp(
+    options: DefaultFirebaseOptions.currentPlatform,
+  );
 
   // Initialize dependency injection
   await di.init();
