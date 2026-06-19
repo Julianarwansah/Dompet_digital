@@ -106,4 +106,12 @@ class AuthRepositoryImpl implements AuthRepository {
   void setAuthToken(String token) {
     _remote.setAuthToken(token);
   }
+
+  @override
+  Future<void> restoreApiToken() async {
+    final token = await _local.getToken();
+    if (token != null && token.isNotEmpty) {
+      _remote.setAuthToken(token);
+    }
+  }
 }

@@ -14,4 +14,5 @@ abstract class AuthRepository {
   void setAuthToken(String token);
   Future<void> setAuthVerified(bool verified);
   Future<bool> isAuthVerified();
+  Future<void> restoreApiToken();
 }
