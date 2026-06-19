@@ -5,7 +5,6 @@ import '../../../core/constants/app_constants.dart';
 import '../../../core/theme/app_colors.dart';
 import '../../../core/utils/currency_formatter.dart';
 import '../../blocs/payment/payment_bloc.dart';
-import '../../widgets/feature_icon.dart';
 import '../../widgets/pin_pad.dart';
 
 class PinPage extends StatefulWidget {
@@ -35,23 +34,23 @@ class _PinPageState extends State<PinPage> {
     if (kind == 'transfer') {
       // Use OTP from 2FA — for demo we use a hardcoded type
       context.read<PaymentBloc>().add(PaymentTransferRequested(
-        amount: (flow['amount'] as num).toDouble(),
-        description: flow['note'] as String? ?? 'Transfer',
-        otpCode: '000000', // In production: get from actual 2FA
-        otpType: AppConstants.otpTypeTotp,
-      ));
+            amount: (flow['amount'] as num).toDouble(),
+            description: flow['note'] as String? ?? 'Transfer',
+            otpCode: '000000', // In production: get from actual 2FA
+            otpType: AppConstants.otpTypeTotp,
+          ));
     } else if (kind == 'topup') {
       context.read<PaymentBloc>().add(PaymentTopupRequested(
-        (flow['amount'] as num).toDouble(),
-      ));
+            (flow['amount'] as num).toDouble(),
+          ));
     } else if (kind == 'payment' || kind == 'deeplink') {
       // QRIS payment → also uses transfer endpoint
       context.read<PaymentBloc>().add(PaymentTransferRequested(
-        amount: (flow['amount'] as num).toDouble(),
-        description: flow['description'] as String? ?? 'Pembayaran QRIS',
-        otpCode: '000000',
-        otpType: AppConstants.otpTypeTotp,
-      ));
+            amount: (flow['amount'] as num).toDouble(),
+            description: flow['description'] as String? ?? 'Pembayaran QRIS',
+            otpCode: '000000',
+            otpType: AppConstants.otpTypeTotp,
+          ));
     }
   }
 
@@ -82,14 +81,19 @@ class _PinPageState extends State<PinPage> {
             ],
           });
         } else if (state is PaymentInvalidOtp) {
-          setState(() { _busy = false; _hasError = true; _pin = ''; });
+          setState(() {
+            _busy = false;
+            _hasError = true;
+            _pin = '';
+          });
           Future.delayed(const Duration(milliseconds: 800), () {
             if (mounted) setState(() => _hasError = false);
           });
         } else if (state is PaymentError) {
           setState(() => _busy = false);
           ScaffoldMessenger.of(context).showSnackBar(
-            SnackBar(content: Text(state.message), backgroundColor: AppColors.red),
+            SnackBar(
+                content: Text(state.message), backgroundColor: AppColors.red),
           );
         }
       },
@@ -135,7 +139,9 @@ class _PinPageState extends State<PinPage> {
                             color: AppColors.primarySurface,
                             borderRadius: BorderRadius.circular(16),
                           ),
-                          child: const Center(child: Icon(Icons.lock_outline_rounded, size: 26, color: AppColors.primary)),
+                          child: const Center(
+                              child: Icon(Icons.lock_outline_rounded,
+                                  size: 26, color: AppColors.primary)),
                         ),
                         const SizedBox(height: 16),
                         const Text('Masukkan PIN',
@@ -148,11 +154,15 @@ class _PinPageState extends State<PinPage> {
                         const SizedBox(height: 6),
                         const Text('Masukkan 6 digit PIN keamanan kamu',
                             textAlign: TextAlign.center,
-                            style: TextStyle(fontSize: 13.5, color: AppColors.slate500)),
+                            style: TextStyle(
+                                fontSize: 13.5, color: AppColors.slate500)),
                         const Spacer(),
                         AnimatedContainer(
                           duration: const Duration(milliseconds: 80),
-                          transform: _hasError ? (Matrix4.identity()..translate(10.0)) : Matrix4.identity(),
+                          transform: _hasError
+                              ? (Matrix4.identity()
+                                ..translateByDouble(10.0, 0, 0, 1.0))
+                              : Matrix4.identity(),
                           child: PinPad(
                             value: _pin,
                             onChanged: (v) => setState(() => _pin = v),
@@ -162,11 +172,16 @@ class _PinPageState extends State<PinPage> {
                         const SizedBox(height: 18),
                         const Text.rich(TextSpan(
                           text: 'Lupa PIN? ',
-                          style: TextStyle(fontFamily: 'PlusJakartaSans', fontSize: 12.5, color: AppColors.slate400),
+                          style: TextStyle(
+                              fontFamily: 'PlusJakartaSans',
+                              fontSize: 12.5,
+                              color: AppColors.slate400),
                           children: [
                             TextSpan(
                               text: 'Reset',
-                              style: TextStyle(color: AppColors.primary, fontWeight: FontWeight.w700),
+                              style: TextStyle(
+                                  color: AppColors.primary,
+                                  fontWeight: FontWeight.w700),
                             ),
                           ],
                         )),
