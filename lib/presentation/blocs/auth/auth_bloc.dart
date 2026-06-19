@@ -91,7 +91,7 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
       emit(AuthUnauthenticated());
       return;
     }
-    _authRepo.setAuthToken(token);
+    await _authRepo.restoreApiToken();
 
     final user = await _authRepo.getSavedUser();
     if (user == null) {
