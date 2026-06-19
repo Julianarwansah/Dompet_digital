@@ -58,11 +58,11 @@ class DefaultFirebaseOptions {
   );
 
   static const FirebaseOptions ios = FirebaseOptions(
-    apiKey: 'AIzaSyA46uBUvmVQKsSL7HIXZG58MD9jXQCFX7c',
-    appId: '1:948878883710:ios:5363ad2b9fbe06b2a0512f',
-    messagingSenderId: '948878883710',
-    projectId: 'fir-emoney-e9256',
-    storageBucket: 'fir-emoney-e9256.firebasestorage.app',
-    iosBundleId: 'com.kampus.dompetKampusGlobal',
+    apiKey: 'AIzaSyBe0I2KNCxZP3YnlKUmLf_ZHeJB_IGO45E',
+    appId: '1:86299609726:ios:513262a2f2a16442eb262f',
+    messagingSenderId: '86299609726',
+    projectId: 'dompet-digital-13b1b',
+    storageBucket: 'dompet-digital-13b1b.firebasestorage.app',
+    iosBundleId: 'com.example.dompetKampusGlobal',
   );
 }
