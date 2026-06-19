@@ -8,7 +8,6 @@ import '../../../core/theme/app_colors.dart';
 import '../../blocs/auth/auth_bloc.dart';
 import '../../widgets/app_button.dart';
 import '../../widgets/app_field.dart';
-import '../../widgets/app_logo.dart';
 import '../../widgets/feature_icon.dart';
 
 class LoginPage extends StatefulWidget {
@@ -124,8 +123,6 @@ class _LoginPageState extends State<LoginPage> {
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-                      const AppLogo(size: 50),
-                      const SizedBox(height: 22),
                       const Text('Masuk',
                           style: TextStyle(
                             fontFamily: 'PlusJakartaSans',
