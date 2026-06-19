@@ -102,7 +102,5 @@ class DeeplinkService {
             uri.path.startsWith('/pay'));
   }
 
-  Future<void> dispose() async {
-    await _subscription?.cancel();
-  }
+  void dispose() => _subscription?.cancel();
 }
