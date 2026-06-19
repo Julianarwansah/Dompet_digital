@@ -34,6 +34,14 @@
 				<string>com.googleusercontent.apps.86299609726-q5essvvlkj2meck04gp73ipgtmupvjii</string>
 			</array>
 		</dict>
+		<dict>
+			<key>CFBundleURLName</key>
+			<string>com.kampus.dompetKampusGlobal.payment</string>
+			<key>CFBundleURLSchemes</key>
+			<array>
+				<string>dompetkampus</string>
+			</array>
+		</dict>
 	</array>
 	<key>CFBundleVersion</key>
 	<string>$(FLUTTER_BUILD_NUMBER)</string>
