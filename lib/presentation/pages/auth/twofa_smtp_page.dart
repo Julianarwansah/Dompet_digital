@@ -33,10 +33,11 @@ class _TwoFASmtpPageState extends State<TwoFASmtpPage> {
     _countdown?.cancel();
     setState(() => _timer = AppConstants.otpResendSeconds);
     _countdown = Timer.periodic(const Duration(seconds: 1), (t) {
-      if (_timer <= 0)
+      if (_timer <= 0) {
         t.cancel();
-      else
+      } else {
         setState(() => _timer--);
+      }
     });
   }
 
@@ -74,11 +75,12 @@ class _TwoFASmtpPageState extends State<TwoFASmtpPage> {
             _hasError = true;
           });
           Future.delayed(const Duration(milliseconds: 650), () {
-            if (mounted)
+            if (mounted) {
               setState(() {
                 _code = '';
                 _hasError = false;
               });
+            }
           });
         } else if (state is OtpError) {
           ScaffoldMessenger.of(context).showSnackBar(
