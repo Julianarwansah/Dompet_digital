@@ -20,6 +20,9 @@ dependencies:
   # Navigation
   go_router: ^14.8.1
 
+  # Deep Links   ← BARU
+  app_links: ^6.3.2
+
   # Network
   dio: ^5.7.0
   pretty_dio_logger: ^1.4.0
