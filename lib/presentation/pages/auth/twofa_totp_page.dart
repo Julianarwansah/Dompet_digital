@@ -64,11 +64,12 @@ class _TwoFATotpPageState extends State<TwoFATotpPage> {
         } else if (state is OtpInvalid) {
           setState(() => _hasError = true);
           Future.delayed(const Duration(milliseconds: 650), () {
-            if (mounted)
+            if (mounted) {
               setState(() {
                 _code = '';
                 _hasError = false;
               });
+            }
           });
         } else if (state is OtpError) {
           ScaffoldMessenger.of(context).showSnackBar(
