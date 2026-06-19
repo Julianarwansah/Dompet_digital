@@ -32,9 +32,14 @@ class _AppBootstrapState extends State<AppBootstrap> {
   late final Future<void> _bootstrap = _init();
 
   Future<void> _init() async {
-    await Firebase.initializeApp(
-      options: DefaultFirebaseOptions.currentPlatform,
-    );
+    try {
+      await Firebase.initializeApp(
+        options: DefaultFirebaseOptions.currentPlatform,
+      );
+    } on FirebaseException catch (e) {
+      if (e.code != 'duplicate-app') rethrow;
+      Firebase.app();
+    }
 
     // Initialize dependency injection
     await di.init();
