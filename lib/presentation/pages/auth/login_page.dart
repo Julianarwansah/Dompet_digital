@@ -1,4 +1,5 @@
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
@@ -20,6 +21,8 @@ class LoginPage extends StatefulWidget {
 class _LoginPageState extends State<LoginPage> {
   static const _iosGoogleClientId =
       '86299609726-q5essvvlkj2meck04gp73ipgtmupvjii.apps.googleusercontent.com';
+  static const _webGoogleClientId =
+      '86299609726-ogu6c7gpp2j7o975jip9jr54vknr3uqo.apps.googleusercontent.com';
 
   String _email = '';
   String _pw = '';
@@ -33,7 +36,12 @@ class _LoginPageState extends State<LoginPage> {
     try {
       debugPrint('[Auth] Google sign-in: memulai...');
       final googleSignIn = GoogleSignIn(
-        clientId: _iosGoogleClientId,
+        clientId: defaultTargetPlatform == TargetPlatform.iOS
+            ? _iosGoogleClientId
+            : null,
+        serverClientId: defaultTargetPlatform == TargetPlatform.android
+            ? _webGoogleClientId
+            : null,
       );
       // Keluar dari sesi Google yang ter-cache agar dialog pilih akun selalu muncul
       await googleSignIn.signOut();
@@ -54,15 +62,18 @@ class _LoginPageState extends State<LoginPage> {
         accessToken: googleAuth.accessToken,
         idToken: googleAuth.idToken,
       );
-      final userCredential = await FirebaseAuth.instance.signInWithCredential(credential);
-      debugPrint('[Auth] Firebase sign-in OK → uid=${userCredential.user?.uid}');
+      final userCredential =
+          await FirebaseAuth.instance.signInWithCredential(credential);
+      debugPrint(
+          '[Auth] Firebase sign-in OK → uid=${userCredential.user?.uid}');
 
       final idToken = await userCredential.user?.getIdToken();
       debugPrint(
           '[Auth] Firebase ID token: ${idToken != null ? "OK (${idToken.length} chars)" : "NULL"}');
 
       if (idToken != null && mounted) {
-        debugPrint('[Auth] Kirim token ke backend → POST /v1/auth/verify-token');
+        debugPrint(
+            '[Auth] Kirim token ke backend → POST /v1/auth/verify-token');
         context.read<AuthBloc>().add(AuthLoginWithFirebase(idToken));
       }
     } catch (e, st) {
@@ -79,7 +90,8 @@ class _LoginPageState extends State<LoginPage> {
 
   Future<void> _loginWithEmail() async {
     try {
-      final userCredential = await FirebaseAuth.instance.signInWithEmailAndPassword(
+      final userCredential =
+          await FirebaseAuth.instance.signInWithEmailAndPassword(
         email: _email,
         password: _pw,
       );
@@ -106,7 +118,8 @@ class _LoginPageState extends State<LoginPage> {
           context.go('/home');
         } else if (state is AuthError) {
           ScaffoldMessenger.of(context).showSnackBar(
-            SnackBar(content: Text(state.message), backgroundColor: AppColors.red),
+            SnackBar(
+                content: Text(state.message), backgroundColor: AppColors.red),
           );
         }
       },
@@ -138,7 +151,8 @@ class _LoginPageState extends State<LoginPage> {
                           )),
                       const SizedBox(height: 6),
                       const Text('Selamat datang kembali',
-                          style: TextStyle(fontSize: 14.5, color: AppColors.slate500)),
+                          style: TextStyle(
+                              fontSize: 14.5, color: AppColors.slate500)),
                       const SizedBox(height: 24),
                       // Google sign in
                       BlocBuilder<AuthBloc, AuthState>(
@@ -151,7 +165,8 @@ class _LoginPageState extends State<LoginPage> {
                               decoration: BoxDecoration(
                                 color: Colors.white,
                                 borderRadius: BorderRadius.circular(14),
-                                border: Border.all(color: AppColors.line, width: 1.5),
+                                border: Border.all(
+                                    color: AppColors.line, width: 1.5),
                                 boxShadow: AppColors.shadowSoft,
                               ),
                               child: Row(
@@ -163,7 +178,8 @@ class _LoginPageState extends State<LoginPage> {
                                           height: 20,
                                           child: CircularProgressIndicator(
                                             strokeWidth: 2.4,
-                                            valueColor: AlwaysStoppedAnimation(AppColors.primary),
+                                            valueColor: AlwaysStoppedAnimation(
+                                                AppColors.primary),
                                           ),
                                         ),
                                         SizedBox(width: 11),
@@ -254,7 +270,8 @@ class _LoginPageState extends State<LoginPage> {
                         mainAxisAlignment: MainAxisAlignment.center,
                         children: [
                           const Text('Belum punya akun? ',
-                              style: TextStyle(fontSize: 14, color: AppColors.slate500)),
+                              style: TextStyle(
+                                  fontSize: 14, color: AppColors.slate500)),
                           GestureDetector(
                             onTap: () => context.go('/register'),
                             child: const Text('Daftar',
