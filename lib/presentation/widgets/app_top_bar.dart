@@ -19,7 +19,8 @@ class AppTopBar extends StatelessWidget implements PreferredSizeWidget {
       scrolledUnderElevation: 0,
       leading: onBack != null
           ? IconButton(
-              icon: const Icon(Icons.arrow_back_ios_new_rounded, size: 20, color: AppColors.ink),
+              icon: const Icon(Icons.arrow_back_ios_new_rounded,
+                  size: 20, color: AppColors.ink),
               onPressed: onBack,
             )
           : null,
@@ -28,11 +29,11 @@ class AppTopBar extends StatelessWidget implements PreferredSizeWidget {
         style: const TextStyle(
           fontFamily: 'PlusJakartaSans',
           fontSize: 17,
-          fontWeight: FontWeight.w700,
+          fontWeight: FontWeight.w800,
           color: AppColors.ink,
         ),
       ),
-      centerTitle: true,
+      centerTitle: false,
       actions: actions,
       bottom: PreferredSize(
         preferredSize: const Size.fromHeight(1),

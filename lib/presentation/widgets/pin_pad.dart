@@ -25,13 +25,27 @@ class PinPad extends StatelessWidget {
     }
     onChanged(next);
     if (next.length == length) {
-      Future.delayed(const Duration(milliseconds: 140), () => onComplete?.call(next));
+      Future.delayed(
+          const Duration(milliseconds: 140), () => onComplete?.call(next));
     }
   }
 
   @override
   Widget build(BuildContext context) {
-    final keys = ['1', '2', '3', '4', '5', '6', '7', '8', '9', 'bio', '0', 'del'];
+    final keys = [
+      '1',
+      '2',
+      '3',
+      '4',
+      '5',
+      '6',
+      '7',
+      '8',
+      '9',
+      'bio',
+      '0',
+      'del'
+    ];
 
     return Column(
       children: [
@@ -45,7 +59,7 @@ class PinPad extends StatelessWidget {
               height: 15,
               margin: const EdgeInsets.symmetric(horizontal: 7),
               decoration: BoxDecoration(
-                shape: BoxShape.circle,
+                borderRadius: BorderRadius.circular(3),
                 color: filled ? AppColors.primary : Colors.transparent,
                 border: Border.all(
                   color: filled ? AppColors.primary : AppColors.primaryBorder,
@@ -68,13 +82,15 @@ class PinPad extends StatelessWidget {
             if (k == 'bio') {
               return _KeyButton(
                 onTap: () => onComplete?.call(value),
-                child: const Icon(Icons.fingerprint_rounded, size: 28, color: AppColors.primary),
+                child: const Icon(Icons.fingerprint_rounded,
+                    size: 28, color: AppColors.primary),
               );
             }
             if (k == 'del') {
               return _KeyButton(
                 onTap: () => _press('del'),
-                child: const Icon(Icons.arrow_back_ios_rounded, size: 22, color: AppColors.slate600),
+                child: const Icon(Icons.arrow_back_ios_rounded,
+                    size: 22, color: AppColors.slate600),
               );
             }
             return _KeyButton(
@@ -110,8 +126,8 @@ class _KeyButton extends StatelessWidget {
         height: 62,
         decoration: BoxDecoration(
           color: Colors.white,
-          borderRadius: BorderRadius.circular(18),
-          boxShadow: AppColors.shadowSoft,
+          borderRadius: BorderRadius.circular(8),
+          border: Border.all(color: AppColors.line, width: 1),
         ),
         child: Center(child: child),
       ),

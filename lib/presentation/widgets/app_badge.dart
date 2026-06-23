@@ -14,7 +14,8 @@ class AppBadge extends StatelessWidget {
       padding: const EdgeInsets.symmetric(horizontal: 9, vertical: 4),
       decoration: BoxDecoration(
         color: colors[0],
-        borderRadius: BorderRadius.circular(20),
+        borderRadius: BorderRadius.circular(6),
+        border: Border.all(color: AppColors.line, width: 1),
       ),
       child: Text(
         label,
@@ -23,7 +24,7 @@ class AppBadge extends StatelessWidget {
           fontSize: 11.5,
           fontWeight: FontWeight.w700,
           color: colors[1],
-          letterSpacing: 0.2,
+          letterSpacing: 0,
         ),
       ),
     );

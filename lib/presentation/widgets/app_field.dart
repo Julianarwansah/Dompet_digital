@@ -83,17 +83,12 @@ class _AppFieldState extends State<AppField> {
           height: 54,
           decoration: BoxDecoration(
             color: Colors.white,
-            borderRadius: BorderRadius.circular(14),
+            borderRadius: BorderRadius.circular(8),
             border: Border.all(
               color: _focused ? AppColors.primary : AppColors.line,
               width: 1.0,
             ),
-            boxShadow: _focused
-                ? [
-                    BoxShadow(
-                        color: AppColors.primary.withValues(alpha: 0.1), blurRadius: 0, spreadRadius: 4)
-                  ]
-                : [],
+            boxShadow: const [],
           ),
           child: Row(
             children: [

@@ -32,7 +32,8 @@ class _CodeInputState extends State<CodeInput> {
     _focusNode = FocusNode();
     _ctrl = TextEditingController(text: widget.value);
     if (widget.autoFocus) {
-      WidgetsBinding.instance.addPostFrameCallback((_) => _focusNode.requestFocus());
+      WidgetsBinding.instance
+          .addPostFrameCallback((_) => _focusNode.requestFocus());
     }
   }
 
@@ -92,7 +93,8 @@ class _CodeInputState extends State<CodeInput> {
             builder: (context, constraints) {
               final totalMargin = horizontalMargin * 2 * widget.length;
               final available = constraints.maxWidth - totalMargin;
-              final boxSize = (available / widget.length).clamp(0.0, maxBoxSize);
+              final boxSize =
+                  (available / widget.length).clamp(0.0, maxBoxSize);
 
               return Row(
                 mainAxisAlignment: MainAxisAlignment.center,
@@ -102,10 +104,11 @@ class _CodeInputState extends State<CodeInput> {
                   return Container(
                     width: boxSize,
                     height: boxSize > 40 ? 56 : boxSize + 10,
-                    margin: const EdgeInsets.symmetric(horizontal: horizontalMargin),
+                    margin: const EdgeInsets.symmetric(
+                        horizontal: horizontalMargin),
                     decoration: BoxDecoration(
                       color: Colors.white,
-                      borderRadius: BorderRadius.circular(13),
+                      borderRadius: BorderRadius.circular(8),
                       border: Border.all(
                         color: widget.hasError
                             ? AppColors.red
@@ -114,11 +117,9 @@ class _CodeInputState extends State<CodeInput> {
                                 : filled
                                     ? AppColors.primaryBorder
                                     : AppColors.line,
-                        width: 1.6,
+                        width: 1,
                       ),
-                      boxShadow: active
-                          ? [BoxShadow(color: AppColors.primary.withValues(alpha: 0.1), blurRadius: 0, spreadRadius: 4)]
-                          : [],
+                      boxShadow: const [],
                     ),
                     child: Center(
                       child: filled
