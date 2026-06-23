@@ -6,24 +6,24 @@ class AppTextStyles {
 
   static const TextStyle h1 = TextStyle(
     fontFamily: _font,
-    fontSize: 30,
+    fontSize: 29,
     fontWeight: FontWeight.w800,
     color: AppColors.ink,
-    letterSpacing: -0.5,
+    letterSpacing: 0,
   );
   static const TextStyle h2 = TextStyle(
     fontFamily: _font,
-    fontSize: 25,
+    fontSize: 24,
     fontWeight: FontWeight.w800,
     color: AppColors.ink,
-    letterSpacing: -0.4,
+    letterSpacing: 0,
   );
   static const TextStyle h3 = TextStyle(
     fontFamily: _font,
-    fontSize: 22,
+    fontSize: 21,
     fontWeight: FontWeight.w800,
     color: AppColors.ink,
-    letterSpacing: -0.3,
+    letterSpacing: 0,
   );
   static const TextStyle h4 = TextStyle(
     fontFamily: _font,
@@ -36,7 +36,7 @@ class AppTextStyles {
     fontSize: 17,
     fontWeight: FontWeight.w800,
     color: AppColors.ink,
-    letterSpacing: -0.2,
+    letterSpacing: 0,
   );
   static const TextStyle titleMd = TextStyle(
     fontFamily: _font,
@@ -85,13 +85,13 @@ class AppTextStyles {
     fontSize: 30,
     fontWeight: FontWeight.w800,
     color: AppColors.ink,
-    letterSpacing: -0.5,
+    letterSpacing: 0,
   );
   static const TextStyle amountXL = TextStyle(
     fontFamily: _font,
     fontSize: 42,
     fontWeight: FontWeight.w800,
     color: AppColors.ink,
-    letterSpacing: -1,
+    letterSpacing: 0,
   );
 }

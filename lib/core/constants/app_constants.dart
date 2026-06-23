@@ -1,12 +1,19 @@
+import 'package:flutter/foundation.dart';
+
 class AppConstants {
   static const String appName = 'Dompet Kampus Global';
   static const String appVersion = '1.0.0';
 
   // API
-  static const String baseUrl = String.fromEnvironment(
-    'API_BASE_URL',
-    defaultValue: 'http://localhost:8080',
-  );
+  static const String _baseUrlOverride = String.fromEnvironment('API_BASE_URL');
+  static String get baseUrl {
+    if (_baseUrlOverride.isNotEmpty) return _baseUrlOverride;
+    if (defaultTargetPlatform == TargetPlatform.android) {
+      return 'http://10.0.2.2:8080';
+    }
+    return 'http://localhost:8080';
+  }
+
   static const String apiVersion = '/v1';
   static const int connectTimeout = 30;
   static const int receiveTimeout = 30;
