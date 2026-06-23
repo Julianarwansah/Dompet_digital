@@ -51,7 +51,7 @@ class MerchantCheckoutPage extends StatelessWidget {
                       const EdgeInsets.symmetric(horizontal: 10, vertical: 5),
                   decoration: BoxDecoration(
                     color: Colors.white.withValues(alpha: 0.2),
-                    borderRadius: BorderRadius.circular(20),
+                    borderRadius: BorderRadius.circular(8),
                   ),
                   child: const Row(
                     children: [
@@ -80,8 +80,8 @@ class MerchantCheckoutPage extends StatelessWidget {
                   Container(
                     decoration: BoxDecoration(
                       color: Colors.white,
-                      borderRadius: BorderRadius.circular(16),
-                      boxShadow: AppColors.shadowSoft,
+                      borderRadius: BorderRadius.circular(8),
+                      border: Border.all(color: AppColors.line, width: 1),
                     ),
                     padding:
                         const EdgeInsets.symmetric(horizontal: 14, vertical: 6),
@@ -116,7 +116,9 @@ class MerchantCheckoutPage extends StatelessWidget {
                                       height: 46,
                                       decoration: BoxDecoration(
                                         color: const Color(0xFFFFF1E9),
-                                        borderRadius: BorderRadius.circular(12),
+                                        borderRadius: BorderRadius.circular(8),
+                                        border: Border.all(
+                                            color: AppColors.line, width: 1),
                                       ),
                                       child: const Center(
                                           child: Icon(
@@ -136,7 +138,7 @@ class MerchantCheckoutPage extends StatelessWidget {
                                               style: const TextStyle(
                                                 fontFamily: 'PlusJakartaSans',
                                                 fontSize: 14,
-                                                fontWeight: FontWeight.w700,
+                                                fontWeight: FontWeight.w800,
                                                 color: AppColors.ink,
                                               )),
                                           Text(
@@ -186,10 +188,8 @@ class MerchantCheckoutPage extends StatelessWidget {
                     padding: const EdgeInsets.all(14),
                     decoration: BoxDecoration(
                       color: Colors.white,
-                      borderRadius: BorderRadius.circular(16),
-                      boxShadow: AppColors.shadowSoft,
-                      border:
-                          Border.all(color: AppColors.primaryLight, width: 1.8),
+                      borderRadius: BorderRadius.circular(8),
+                      border: Border.all(color: AppColors.primary, width: 1),
                     ),
                     child: Row(
                       children: [
@@ -225,8 +225,8 @@ class MerchantCheckoutPage extends StatelessWidget {
                         const EdgeInsets.symmetric(horizontal: 14, vertical: 6),
                     decoration: BoxDecoration(
                       color: Colors.white,
-                      borderRadius: BorderRadius.circular(16),
-                      boxShadow: AppColors.shadowSoft,
+                      borderRadius: BorderRadius.circular(8),
+                      border: Border.all(color: AppColors.line, width: 1),
                     ),
                     child: Column(
                       children: [

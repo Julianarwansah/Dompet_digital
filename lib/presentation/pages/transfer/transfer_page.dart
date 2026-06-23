@@ -58,8 +58,11 @@ class _TransferPageState extends State<TransferPage> {
                           margin: const EdgeInsets.only(right: 4),
                           padding: const EdgeInsets.symmetric(vertical: 11),
                           decoration: BoxDecoration(
-                            color: active ? AppColors.primary : AppColors.bg,
-                            borderRadius: BorderRadius.circular(12),
+                            color: active ? AppColors.ink : Colors.white,
+                            borderRadius: BorderRadius.circular(8),
+                            border: Border.all(
+                              color: active ? AppColors.ink : AppColors.line,
+                            ),
                           ),
                           child: Center(
                             child: Text(t[1],
@@ -122,8 +125,8 @@ class _TransferPageState extends State<TransferPage> {
         Container(
           decoration: BoxDecoration(
             color: Colors.white,
-            borderRadius: BorderRadius.circular(18),
-            boxShadow: AppColors.shadowSoft,
+            borderRadius: BorderRadius.circular(8),
+            border: Border.all(color: AppColors.line, width: 1),
           ),
           child: Column(
             children: filtered.asMap().entries.map((e) {
@@ -153,7 +156,7 @@ class _TransferPageState extends State<TransferPage> {
                                     style: const TextStyle(
                                       fontFamily: 'PlusJakartaSans',
                                       fontSize: 14.5,
-                                      fontWeight: FontWeight.w700,
+                                      fontWeight: FontWeight.w800,
                                       color: AppColors.ink,
                                     )),
                                 Text(c['sub'] as String,
@@ -190,8 +193,8 @@ class _TransferPageState extends State<TransferPage> {
       margin: const EdgeInsets.only(top: 8),
       decoration: BoxDecoration(
         color: Colors.white,
-        borderRadius: BorderRadius.circular(18),
-        boxShadow: AppColors.shadowSoft,
+        borderRadius: BorderRadius.circular(8),
+        border: Border.all(color: AppColors.line, width: 1),
       ),
       child: Column(
         children: filtered.asMap().entries.map((e) {
@@ -215,7 +218,8 @@ class _TransferPageState extends State<TransferPage> {
                         height: 44,
                         decoration: BoxDecoration(
                           color: AppColors.primarySurface,
-                          borderRadius: BorderRadius.circular(12),
+                          borderRadius: BorderRadius.circular(8),
+                          border: Border.all(color: AppColors.line, width: 1),
                         ),
                         child: Center(
                           child: Text(b['name'] as String,
@@ -236,7 +240,7 @@ class _TransferPageState extends State<TransferPage> {
                                 style: const TextStyle(
                                   fontFamily: 'PlusJakartaSans',
                                   fontSize: 14.5,
-                                  fontWeight: FontWeight.w700,
+                                  fontWeight: FontWeight.w800,
                                   color: AppColors.ink,
                                 )),
                             const Text('Biaya Rp2.500',
