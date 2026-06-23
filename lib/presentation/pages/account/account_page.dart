@@ -26,20 +26,21 @@ class AccountPage extends StatelessWidget {
           body: SingleChildScrollView(
             child: Column(
               children: [
-                // Header
                 Container(
                   decoration: const BoxDecoration(
-                    gradient: AppColors.primaryGradient,
-                    borderRadius: BorderRadius.only(
-                      bottomLeft: Radius.circular(28),
-                      bottomRight: Radius.circular(28),
+                    color: Colors.white,
+                    border: Border(
+                      bottom: BorderSide(color: AppColors.line, width: 1),
                     ),
                   ),
                   padding: EdgeInsets.fromLTRB(
                       20, MediaQuery.of(context).padding.top + 12, 20, 24),
                   child: Row(
                     children: [
-                      AppAvatar(name: user?.name ?? 'User', size: 60, bg: Colors.white.withValues(alpha: 0.25)),
+                      AppAvatar(
+                          name: user?.name ?? 'User',
+                          size: 58,
+                          bg: AppColors.bg),
                       const SizedBox(width: 14),
                       Expanded(
                         child: Column(
@@ -50,34 +51,37 @@ class AccountPage extends StatelessWidget {
                                   fontFamily: 'PlusJakartaSans',
                                   fontSize: 19,
                                   fontWeight: FontWeight.w800,
-                                  color: Colors.white,
+                                  color: AppColors.ink,
                                 )),
                             Text(user?.email ?? '',
                                 overflow: TextOverflow.ellipsis,
                                 style: const TextStyle(
                                   fontFamily: 'PlusJakartaSans',
                                   fontSize: 13,
-                                  color: Colors.white70,
+                                  color: AppColors.slate500,
                                 )),
                           ],
                         ),
                       ),
                       Container(
-                        padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 5),
+                        padding: const EdgeInsets.symmetric(
+                            horizontal: 10, vertical: 5),
                         decoration: BoxDecoration(
-                          color: Colors.white.withValues(alpha: 0.18),
-                          borderRadius: BorderRadius.circular(20),
+                          color: AppColors.primarySurface,
+                          borderRadius: BorderRadius.circular(8),
+                          border: Border.all(color: AppColors.primaryBorder),
                         ),
                         child: const Row(
                           children: [
-                            Icon(Icons.verified_user_outlined, size: 14, color: Colors.white),
+                            Icon(Icons.verified_user_outlined,
+                                size: 14, color: AppColors.primary),
                             SizedBox(width: 5),
                             Text('Terverifikasi',
                                 style: TextStyle(
                                   fontFamily: 'PlusJakartaSans',
                                   fontSize: 11.5,
                                   fontWeight: FontWeight.w700,
-                                  color: Colors.white,
+                                  color: AppColors.primary,
                                 )),
                           ],
                         ),
@@ -85,7 +89,6 @@ class AccountPage extends StatelessWidget {
                     ],
                   ),
                 ),
-
                 const SizedBox(height: 16),
                 Padding(
                   padding: const EdgeInsets.symmetric(horizontal: 16),
@@ -105,8 +108,8 @@ class AccountPage extends StatelessWidget {
                       Container(
                         decoration: BoxDecoration(
                           color: Colors.white,
-                          borderRadius: BorderRadius.circular(18),
-                          boxShadow: AppColors.shadowSoft,
+                          borderRadius: BorderRadius.circular(8),
+                          border: Border.all(color: AppColors.line, width: 1),
                         ),
                         child: Column(
                           children: [
@@ -116,9 +119,11 @@ class AccountPage extends StatelessWidget {
                               title: 'Verifikasi 2 langkah (2FA)',
                               subtitle: 'Aktif · Email OTP',
                               onTap: () => context.go('/setup-2fa'),
-                              right: const AppBadge(label: 'Aktif', tone: 'green'),
+                              right:
+                                  const AppBadge(label: 'Aktif', tone: 'green'),
                             ),
-                            const Divider(height: 1, indent: 56, color: AppColors.line2),
+                            const Divider(
+                                height: 1, indent: 56, color: AppColors.line2),
                             _Row(
                               icon: Icons.lock_outline_rounded,
                               tone: 'blue',
@@ -126,7 +131,8 @@ class AccountPage extends StatelessWidget {
                               subtitle: 'Terakhir diubah 2 bln lalu',
                               onTap: () {},
                             ),
-                            const Divider(height: 1, indent: 56, color: AppColors.line2),
+                            const Divider(
+                                height: 1, indent: 56, color: AppColors.line2),
                             _Row(
                               icon: Icons.fingerprint_rounded,
                               tone: 'violet',
@@ -152,34 +158,50 @@ class AccountPage extends StatelessWidget {
                       Container(
                         decoration: BoxDecoration(
                           color: Colors.white,
-                          borderRadius: BorderRadius.circular(18),
-                          boxShadow: AppColors.shadowSoft,
+                          borderRadius: BorderRadius.circular(8),
+                          border: Border.all(color: AppColors.line, width: 1),
                         ),
                         child: Column(
                           children: [
-                            _Row(icon: Icons.person_outline_rounded, tone: 'blue', title: 'Data pribadi', onTap: () {}),
-                            const Divider(height: 1, indent: 56, color: AppColors.line2),
-                            _Row(icon: Icons.account_balance_outlined, tone: 'green', title: 'Rekening & kartu tersimpan', onTap: () {}),
-                            const Divider(height: 1, indent: 56, color: AppColors.line2),
-                            _Row(icon: Icons.settings_outlined, tone: 'slate', title: 'Pengaturan aplikasi', onTap: () {}),
+                            _Row(
+                                icon: Icons.person_outline_rounded,
+                                tone: 'blue',
+                                title: 'Data pribadi',
+                                onTap: () {}),
+                            const Divider(
+                                height: 1, indent: 56, color: AppColors.line2),
+                            _Row(
+                                icon: Icons.account_balance_outlined,
+                                tone: 'green',
+                                title: 'Rekening & kartu tersimpan',
+                                onTap: () {}),
+                            const Divider(
+                                height: 1, indent: 56, color: AppColors.line2),
+                            _Row(
+                                icon: Icons.settings_outlined,
+                                tone: 'slate',
+                                title: 'Pengaturan aplikasi',
+                                onTap: () {}),
                           ],
                         ),
                       ),
                       const SizedBox(height: 18),
                       GestureDetector(
-                        onTap: () => context.read<AuthBloc>().add(AuthLogoutRequested()),
+                        onTap: () =>
+                            context.read<AuthBloc>().add(AuthLogoutRequested()),
                         child: Container(
                           width: double.infinity,
                           padding: const EdgeInsets.symmetric(vertical: 15),
                           decoration: BoxDecoration(
                             color: Colors.white,
-                            borderRadius: BorderRadius.circular(16),
-                            boxShadow: AppColors.shadowSoft,
+                            borderRadius: BorderRadius.circular(8),
+                            border: Border.all(color: AppColors.line, width: 1),
                           ),
                           child: const Row(
                             mainAxisAlignment: MainAxisAlignment.center,
                             children: [
-                              Icon(Icons.logout_rounded, size: 20, color: AppColors.red),
+                              Icon(Icons.logout_rounded,
+                                  size: 20, color: AppColors.red),
                               SizedBox(width: 9),
                               Text('Keluar',
                                   style: TextStyle(
@@ -237,11 +259,11 @@ class _Row extends StatelessWidget {
       onTap: onTap,
       behavior: HitTestBehavior.opaque,
       child: Padding(
-        padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 14),
+        padding: const EdgeInsets.symmetric(horizontal: 14, vertical: 13),
         child: Row(
           children: [
-            FeatureIcon(icon: icon, tone: tone, size: 42, iconSize: 20),
-            const SizedBox(width: 14),
+            FeatureIcon(icon: icon, tone: tone, size: 40, iconSize: 20),
+            const SizedBox(width: 12),
             Expanded(
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
@@ -250,7 +272,7 @@ class _Row extends StatelessWidget {
                       style: const TextStyle(
                         fontFamily: 'PlusJakartaSans',
                         fontSize: 14.5,
-                        fontWeight: FontWeight.w700,
+                        fontWeight: FontWeight.w800,
                         color: AppColors.ink,
                       )),
                   if (subtitle != null) ...[
@@ -265,7 +287,9 @@ class _Row extends StatelessWidget {
                 ],
               ),
             ),
-            right ?? const Icon(Icons.chevron_right_rounded, size: 18, color: AppColors.slate400),
+            right ??
+                const Icon(Icons.chevron_right_rounded,
+                    size: 18, color: AppColors.slate400),
           ],
         ),
       ),
@@ -290,7 +314,7 @@ class _ToggleState extends State<_Toggle> {
         height: 26,
         decoration: BoxDecoration(
           color: _on ? AppColors.green : AppColors.line,
-          borderRadius: BorderRadius.circular(20),
+          borderRadius: BorderRadius.circular(6),
         ),
         child: AnimatedAlign(
           duration: const Duration(milliseconds: 180),
@@ -299,10 +323,9 @@ class _ToggleState extends State<_Toggle> {
             margin: const EdgeInsets.all(3),
             width: 20,
             height: 20,
-            decoration: const BoxDecoration(
+            decoration: BoxDecoration(
               color: Colors.white,
-              shape: BoxShape.circle,
-              boxShadow: [BoxShadow(color: Colors.black12, blurRadius: 3, offset: Offset(0, 1))],
+              borderRadius: BorderRadius.circular(4),
             ),
           ),
         ),
