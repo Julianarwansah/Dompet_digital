@@ -9,7 +9,7 @@ class AppConstants {
   static String get baseUrl {
     if (_baseUrlOverride.isNotEmpty) return _baseUrlOverride;
     if (defaultTargetPlatform == TargetPlatform.android) {
-      return 'http://192.168.131.185:8080';
+      return 'http://192.168.131.185:8081';
     }
     return 'http://localhost:8080';
   }
