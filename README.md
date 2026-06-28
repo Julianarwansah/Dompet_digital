@@ -208,6 +208,10 @@ Presentation (UI/BLoC) → Domain (UseCases/Entities) → Data (Repositories/Dat
 
 Dependency injection pakai **GetIt** supaya semua layer bisa dipisah dan di-test.
 
+## Demo Video
+
+📺 [YouTube — APP Dompet Digital & APP Pasar Malam](https://youtu.be/FbgJiSlCbQc?si=o25bBbH71duQvz4X)
+
 ## Proyek Terkait
 
 | Proyek | Link | Hubungan |
