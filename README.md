@@ -1,6 +1,26 @@
 # Dompet Kampus Global (FE)
 
+<img src="assets/images/logo-dompet.png" alt="Logo Dompet" width="120">
+
 Aplikasi mobile e-money buat mahasiswa — bisa top-up, transfer, bayar pakai QR, dan kelola uang kuliah. Dibangun pakai Flutter dengan arsitektur Clean Architecture (BLoC pattern).
+
+## Tampilan Aplikasi
+
+<p align="center">
+  <img src="assets/images/1.welcomedompetdigital.png" alt="Welcome" width="250">&nbsp;&nbsp;
+  <img src="assets/images/2.registrasiacountdigital.png" alt="Registrasi" width="250">&nbsp;&nbsp;
+  <img src="assets/images/3.logindompetdigital.png" alt="Login" width="250">
+</p>
+
+<p align="center">
+  <img src="assets/images/4.dashboarddigital.png" alt="Dashboard" width="250">&nbsp;&nbsp;
+  <img src="assets/images/5.riwayatdompetdigital.png" alt="Riwayat" width="250">&nbsp;&nbsp;
+  <img src="assets/images/6.promodompetdigital.png" alt="Promo" width="250">
+</p>
+
+<p align="center">
+  <img src="assets/images/7.profileacountdompetdigital.png" alt="Profil" width="250">
+</p>
 
 ## Fitur
 
