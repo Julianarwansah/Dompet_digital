@@ -124,7 +124,7 @@ class _LoginPageState extends State<LoginPage> {
         }
       },
       child: Scaffold(
-        backgroundColor: Colors.white,
+        backgroundColor: AppColors.bg,
         body: SafeArea(
           child: Column(
             children: [
@@ -137,7 +137,7 @@ class _LoginPageState extends State<LoginPage> {
               ),
               Expanded(
                 child: SingleChildScrollView(
-                  padding: const EdgeInsets.fromLTRB(26, 10, 26, 24),
+                  padding: const EdgeInsets.fromLTRB(16, 10, 16, 24),
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
@@ -154,107 +154,120 @@ class _LoginPageState extends State<LoginPage> {
                           style: TextStyle(
                               fontSize: 14.5, color: AppColors.slate500)),
                       const SizedBox(height: 24),
-                      // Google sign in
-                      BlocBuilder<AuthBloc, AuthState>(
-                        builder: (context, state) {
-                          final loading = state is AuthLoading || _gLoading;
-                          return GestureDetector(
-                            onTap: loading ? null : _loginWithGoogle,
-                            child: Container(
-                              height: 54,
-                              decoration: BoxDecoration(
-                                color: Colors.white,
-                                borderRadius: BorderRadius.circular(14),
-                                border: Border.all(
-                                    color: AppColors.line, width: 1.5),
-                                boxShadow: AppColors.shadowSoft,
+                      // Card container
+                      Container(
+                        decoration: BoxDecoration(
+                          color: Colors.white,
+                          borderRadius: BorderRadius.circular(8),
+                          border: Border.all(color: AppColors.line, width: 1),
+                        ),
+                        padding: const EdgeInsets.all(20),
+                        child: Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            // Google sign in
+                            BlocBuilder<AuthBloc, AuthState>(
+                              builder: (context, state) {
+                                final loading = state is AuthLoading || _gLoading;
+                                return GestureDetector(
+                                  onTap: loading ? null : _loginWithGoogle,
+                                  child: Container(
+                                    height: 52,
+                                    decoration: BoxDecoration(
+                                      color: Colors.white,
+                                      borderRadius: BorderRadius.circular(8),
+                                      border: Border.all(
+                                          color: AppColors.line, width: 1.5),
+                                    ),
+                                    child: Row(
+                                      mainAxisAlignment: MainAxisAlignment.center,
+                                      children: loading
+                                          ? const [
+                                              SizedBox(
+                                                width: 20,
+                                                height: 20,
+                                                child: CircularProgressIndicator(
+                                                  strokeWidth: 2.4,
+                                                  valueColor: AlwaysStoppedAnimation(
+                                                      AppColors.primary),
+                                                ),
+                                              ),
+                                              SizedBox(width: 11),
+                                              Text('Menghubungkan…',
+                                                  style: TextStyle(
+                                                    fontFamily: 'PlusJakartaSans',
+                                                    fontSize: 15,
+                                                    fontWeight: FontWeight.w700,
+                                                  )),
+                                            ]
+                                          : const [
+                                              _GoogleIcon(),
+                                              SizedBox(width: 11),
+                                              Text('Lanjut dengan Google',
+                                                  style: TextStyle(
+                                                    fontFamily: 'PlusJakartaSans',
+                                                    fontSize: 15,
+                                                    fontWeight: FontWeight.w700,
+                                                    color: AppColors.ink,
+                                                  )),
+                                            ],
+                                    ),
+                                  ),
+                                );
+                              },
+                            ),
+                            const SizedBox(height: 18),
+                            Row(children: [
+                              const Expanded(child: Divider(color: AppColors.line)),
+                              Padding(
+                                padding: const EdgeInsets.symmetric(horizontal: 12),
+                                child: const Text('atau email',
+                                    style: TextStyle(
+                                      fontFamily: 'PlusJakartaSans',
+                                      fontSize: 12.5,
+                                      fontWeight: FontWeight.w600,
+                                      color: AppColors.slate400,
+                                    )),
                               ),
-                              child: Row(
-                                mainAxisAlignment: MainAxisAlignment.center,
-                                children: loading
-                                    ? const [
-                                        SizedBox(
-                                          width: 20,
-                                          height: 20,
-                                          child: CircularProgressIndicator(
-                                            strokeWidth: 2.4,
-                                            valueColor: AlwaysStoppedAnimation(
-                                                AppColors.primary),
-                                          ),
-                                        ),
-                                        SizedBox(width: 11),
-                                        Text('Menghubungkan…',
-                                            style: TextStyle(
-                                              fontFamily: 'PlusJakartaSans',
-                                              fontSize: 15.5,
-                                              fontWeight: FontWeight.w700,
-                                            )),
-                                      ]
-                                    : const [
-                                        _GoogleIcon(),
-                                        SizedBox(width: 11),
-                                        Text('Lanjut dengan Google',
-                                            style: TextStyle(
-                                              fontFamily: 'PlusJakartaSans',
-                                              fontSize: 15.5,
-                                              fontWeight: FontWeight.w700,
-                                              color: AppColors.ink,
-                                            )),
-                                      ],
+                              const Expanded(child: Divider(color: AppColors.line)),
+                            ]),
+                            const SizedBox(height: 18),
+                            AppField(
+                              label: 'Email',
+                              value: _email,
+                              onChanged: (v) => setState(() => _email = v),
+                              placeholder: 'nama@email.com',
+                              keyboardType: TextInputType.emailAddress,
+                              prefixIcon: const Icon(DkgIcons.mail, size: 20),
+                            ),
+                            const SizedBox(height: 14),
+                            AppField(
+                              label: 'Kata sandi',
+                              value: _pw,
+                              onChanged: (v) => setState(() => _pw = v),
+                              obscureText: !_showPw,
+                              placeholder: '••••••••',
+                              prefixIcon: const Icon(DkgIcons.lock, size: 20),
+                              suffixIcon: IconButton(
+                                icon: Icon(_showPw ? DkgIcons.eyeOff : DkgIcons.eye,
+                                    size: 20, color: AppColors.slate400),
+                                onPressed: () => setState(() => _showPw = !_showPw),
                               ),
                             ),
-                          );
-                        },
-                      ),
-                      const SizedBox(height: 22),
-                      Row(children: [
-                        const Expanded(child: Divider(color: AppColors.line)),
-                        Padding(
-                          padding: const EdgeInsets.symmetric(horizontal: 12),
-                          child: const Text('atau email',
-                              style: TextStyle(
-                                fontFamily: 'PlusJakartaSans',
-                                fontSize: 12.5,
-                                fontWeight: FontWeight.w600,
-                                color: AppColors.slate400,
-                              )),
-                        ),
-                        const Expanded(child: Divider(color: AppColors.line)),
-                      ]),
-                      const SizedBox(height: 22),
-                      AppField(
-                        label: 'Email',
-                        value: _email,
-                        onChanged: (v) => setState(() => _email = v),
-                        placeholder: 'nama@email.com',
-                        keyboardType: TextInputType.emailAddress,
-                        prefixIcon: const Icon(DkgIcons.mail, size: 20),
-                      ),
-                      const SizedBox(height: 14),
-                      AppField(
-                        label: 'Kata sandi',
-                        value: _pw,
-                        onChanged: (v) => setState(() => _pw = v),
-                        obscureText: !_showPw,
-                        placeholder: '••••••••',
-                        prefixIcon: const Icon(DkgIcons.lock, size: 20),
-                        suffixIcon: IconButton(
-                          icon: Icon(_showPw ? DkgIcons.eyeOff : DkgIcons.eye,
-                              size: 20, color: AppColors.slate400),
-                          onPressed: () => setState(() => _showPw = !_showPw),
-                        ),
-                      ),
-                      Align(
-                        alignment: Alignment.centerRight,
-                        child: TextButton(
-                          onPressed: () {},
-                          child: const Text('Lupa kata sandi?',
-                              style: TextStyle(
-                                fontFamily: 'PlusJakartaSans',
-                                color: AppColors.primary,
-                                fontWeight: FontWeight.w700,
-                                fontSize: 13.5,
-                              )),
+                            Align(
+                              alignment: Alignment.centerRight,
+                              child: TextButton(
+                                onPressed: () {},
+                                child: const Text('Lupa kata sandi?',
+                                    style: TextStyle(
+                                      fontFamily: 'PlusJakartaSans',
+                                      color: AppColors.primary,
+                                      fontWeight: FontWeight.w700,
+                                      fontSize: 13.5,
+                                    )),
+                              ),
+                            ),
+                          ],
                         ),
                       ),
                       const SizedBox(height: 18),

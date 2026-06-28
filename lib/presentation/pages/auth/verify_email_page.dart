@@ -125,7 +125,7 @@ class _VerifyEmailPageState extends State<VerifyEmailPage> {
     final email = FirebaseAuth.instance.currentUser?.email ?? 'email kamu';
 
     return Scaffold(
-      backgroundColor: Colors.white,
+      backgroundColor: AppColors.bg,
       body: SafeArea(
         child: Column(
           children: [
@@ -138,10 +138,17 @@ class _VerifyEmailPageState extends State<VerifyEmailPage> {
             ),
             Expanded(
               child: SingleChildScrollView(
-                padding: const EdgeInsets.fromLTRB(28, 14, 28, 28),
-                child: Column(
-                  children: [
-                    Stack(
+                padding: const EdgeInsets.fromLTRB(16, 14, 16, 28),
+                child: Container(
+                  decoration: BoxDecoration(
+                    color: Colors.white,
+                    borderRadius: BorderRadius.circular(8),
+                    border: Border.all(color: AppColors.line, width: 1),
+                  ),
+                  padding: const EdgeInsets.all(24),
+                  child: Column(
+                    children: [
+                      Stack(
                       clipBehavior: Clip.none,
                       children: [
                         Container(
@@ -266,6 +273,7 @@ class _VerifyEmailPageState extends State<VerifyEmailPage> {
                             ),
                           ),
                   ],
+                  ),
                 ),
               ),
             ),
