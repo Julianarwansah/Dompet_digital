@@ -210,11 +210,11 @@ Dependency injection pakai **GetIt** supaya semua layer bisa dipisah dan di-test
 
 ## Proyek Terkait
 
-| Folder | Hubungan |
-|--------|----------|
-| [📂 `be_dompet_digital`](../be_dompet_digital) | Backend API yang menyediakan semua data & fitur e-money |
-| [📂 `pasar_malam`](../pasar_malam) | Flutter app marketplace — user bisa bayar pakai saldo dompet ini |
-| [📂 `be_pasar_malam`](../be_pasar_malam) | Backend marketplace — share Firebase Auth dengan backend ini |
+| Proyek | Link | Hubungan |
+|--------|------|----------|
+| `BE_Dompet_digital` | [GitHub](https://github.com/Julianarwansah/BE_Dompet_digital.git) | Backend API yang menyediakan semua data & fitur e-money |
+| `apk_pasar_malam_conect_dompet_digital` | [GitHub](https://github.com/Julianarwansah/apk_pasar_malam_conect_dompet_digital.git) | Flutter app marketplace — user bisa bayar pakai saldo dompet ini |
+| `be_pasar_malam` | [GitHub](https://github.com/Julianarwansah/be_pasar_malam.git) | Backend marketplace — share Firebase Auth dengan backend ini |
 
 ## Catatan
 
